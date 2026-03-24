@@ -1,0 +1,20 @@
+#include<iostream>
+
+using namespace std;
+
+int fac(int n)
+{
+	if(n==1)
+	{
+		return 1;
+	}
+	return n*fac(n-1);
+}
+int main()
+{
+	int a=0;
+	int b=0;
+	cin>>a>>b;
+	cout<<fac(a+b)<<endl;
+	return 0;
+}
