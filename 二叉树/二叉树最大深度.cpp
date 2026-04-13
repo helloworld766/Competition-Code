@@ -1,8 +1,6 @@
 #include<iostream>
-#include<vector>
-#include<queue>
-using namespace std;
 
+using namespace std;
 struct tree_node//二叉树结构 
 {
 	int value;
@@ -26,6 +24,25 @@ struct tree_node//二叉树结构
 		right=Right;
 	}
 };
+// ==================== 样例 4：完全二叉树 ====================
+// 结构：
+//        1
+//      /   \
+//     2     3
+//    / \   /
+//   4   5 6
+tree_node* createCompleteBinaryTree() 
+{
+    tree_node* node4 = new tree_node(4);
+    tree_node* node5 = new tree_node(5);
+    tree_node* node2 = new tree_node(2, node4, node5);
+    
+    tree_node* node6 = new tree_node(6);
+    tree_node* node3 = new tree_node(3, node6, NULL);
+    
+    tree_node* root = new tree_node(1, node2, node3);
+    return root;
+}
 // ==================== 样例 5：复杂多分支树 ====================
 // 结构：
 //          1
@@ -49,49 +66,21 @@ tree_node* createComplexTree()
     tree_node* root = new tree_node(1, node2, node3);
     return root;
 }
-//层序遍历 
-vector<vector<int>> level_order_traversal(tree_node* root)
+int getdepth(tree_node* root)
 {
-	queue<tree_node*> q;
-	vector<vector<int>> result;
-	if(root!=NULL)
+	if(root==NULL)
 	{
-		q.push(root);
+		return 0;
 	}
-	while(q.size()!=0)
-	{
-		int size=q.size();
-		vector<int> v;
-		while(size--)
-		{
-			tree_node node=*(q.front());
-			v.push_back(node.value);
-			if(node.left!=NULL)
-			{
-				q.push(node.left);
-			}
-			if(node.right!=NULL)
-			{
-				q.push(node.right);
-			}
-			q.pop();
-		}
-		result.push_back(v);
-	}
+	int left_depth=getdepth(root->left);
+	int right_depth=getdepth(root->right);
+	int result=1+max(left_depth,right_depth);
 	return result;
 }
 int main()
 {
-	vector<vector<int>> result;
-	tree_node* root=createComplexTree();
-	result=level_order_traversal(root);
-	for(vector<int> v:result)
-	{
-		for(int val:v)
-		{
-			cout<<val<<" ";
-		}
-		cout<<endl;
-	}
-	return 0;
+	tree_node* root=createCompleteBinaryTree();
+	int depth=getdepth(root);
+	cout<<"depth="<<depth<<endl;
+	return 0; 
 } 

@@ -1,8 +1,6 @@
 #include<iostream>
-#include<vector>
-#include<queue>
-using namespace std;
 
+using namespace std;
 struct tree_node//二叉树结构 
 {
 	int value;
@@ -49,49 +47,27 @@ tree_node* createComplexTree()
     tree_node* root = new tree_node(1, node2, node3);
     return root;
 }
-//层序遍历 
-vector<vector<int>> level_order_traversal(tree_node* root)
+int getnear(tree_node* root)
 {
-	queue<tree_node*> q;
-	vector<vector<int>> result;
-	if(root!=NULL)
+	if(root==NULL)
 	{
-		q.push(root);
+		return 0;
 	}
-	while(q.size()!=0)
+	int left=getnear(root->left);
+	int right=getnear(root->right);
+	if(root->left==NULL && root->right!=NULL)//子树只有半边只用考虑半边 
 	{
-		int size=q.size();
-		vector<int> v;
-		while(size--)
-		{
-			tree_node node=*(q.front());
-			v.push_back(node.value);
-			if(node.left!=NULL)
-			{
-				q.push(node.left);
-			}
-			if(node.right!=NULL)
-			{
-				q.push(node.right);
-			}
-			q.pop();
-		}
-		result.push_back(v);
+		return 1+right;
 	}
-	return result;
+	if(root->right==NULL && root->left!=NULL)
+	{
+		return 1+left;
+	}
+	return 1+min(left,right);//子树都不为空或都为空 
 }
 int main()
 {
-	vector<vector<int>> result;
 	tree_node* root=createComplexTree();
-	result=level_order_traversal(root);
-	for(vector<int> v:result)
-	{
-		for(int val:v)
-		{
-			cout<<val<<" ";
-		}
-		cout<<endl;
-	}
-	return 0;
-} 
+	int depth=getnear(root);
+	cout<<"depth="<<depth<<endl;
+}
