@@ -1,0 +1,73 @@
+# ========================
+# Visual Studio IDE 相关
+# ========================
+# IDE 本地缓存、配置、断点等用户私有数据
+.vs/
+
+# 解决方案与项目的用户私有配置（每人本地环境不同，无需提交）
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+*.vcxproj.filters.user
+
+# ========================
+# C/C++ 编译输出目录
+# ========================
+# 默认的 Debug/Release 输出目录（x86/x64 平台）
+Debug/
+Release/
+x64/
+x86/
+Win32/
+bin/
+obj/
+Bin/
+Obj/
+
+# ========================
+# 编译中间与产物文件
+# ========================
+*.obj
+*.o
+*.i
+*.ii
+*.s
+*.a
+*.lib
+*.dll
+*.exe
+*.pdb          # 调试符号文件
+*.pch          # 预编译头
+*.idb
+*.res
+*.ilk
+*.exp
+*.def
+*.aps
+*.bsc
+*.sbr
+*.ipdb
+*.iobj
+*.log
+*.tlog
+
+# ========================
+# IntelliSense 智能提示缓存
+# ========================
+ipch/
+*.ipch
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+
+# ========================
+# 系统与临时文件
+# ========================
+*.tmp
+*.temp
+*.bak
+Thumbs.db
+Desktop.ini
